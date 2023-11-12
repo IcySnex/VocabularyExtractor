@@ -247,6 +247,10 @@
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.2023.32017"
           },
+          "System.Threading.Thread.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2023.32017"
+          },
           "System.Xml.Linq.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "6.0.2023.32017"
@@ -258,6 +262,50 @@
           "netstandard.dll": {
             "assemblyVersion": "2.1.0.0",
             "fileVersion": "6.0.2023.32017"
+          }
+        },
+        "native": {
+          "createdump": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.Globalization.Native.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.IO.Compression.Native.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.Native.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.Net.Security.Native.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.Security.Cryptography.Native.Apple.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.Security.Cryptography.Native.OpenSsl.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libclrjit.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libcoreclr.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libdbgshim.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libhostfxr.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libhostpolicy.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libmscordaccore.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libmscordbi.dylib": {
+            "fileVersion": "0.0.0.0"
           }
         }
       },

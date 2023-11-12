@@ -251,6 +251,10 @@
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.2023.32017"
           },
+          "System.Threading.Thread.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.2023.32017"
+          },
           "System.Xml.Linq.dll": {
             "assemblyVersion": "4.0.0.0",
             "fileVersion": "6.0.2023.32017"
@@ -262,6 +266,50 @@
           "netstandard.dll": {
             "assemblyVersion": "2.1.0.0",
             "fileVersion": "6.0.2023.32017"
+          }
+        },
+        "native": {
+          "createdump": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.Globalization.Native.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.IO.Compression.Native.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.Native.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.Net.Security.Native.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libSystem.Security.Cryptography.Native.OpenSsl.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libclrjit.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libcoreclr.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libcoreclrtraceptprovider.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libdbgshim.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libhostfxr.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libhostpolicy.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libmscordaccore.so": {
+            "fileVersion": "0.0.0.0"
+          },
+          "libmscordbi.so": {
+            "fileVersion": "0.0.0.0"
           }
         }
       },

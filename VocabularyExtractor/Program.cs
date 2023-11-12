@@ -3,7 +3,7 @@
 public class Program
 {
     static Config config = default!;
-    static Clipboard.IClipBoard clipboard = Clipboard.IClipBoard.Default();
+    static readonly Clipboard.IClipBoard clipboard = Clipboard.IClipBoard.Default();
 
     public static async Task Main(string[] args)
     {
@@ -102,7 +102,6 @@ public class Program
     }
 
 
-
     static void UpdateConfiguration(
         Config config)
     {
@@ -167,8 +166,7 @@ public class Program
         if (!Excel.Wrapper.ValidateConfig(config)) return;
         if (!OnlineShare.Wrapper.ValidateConfig(config)) return;
 
-        if (filePath is null)
-            filePath = ConsoleHelpers.GetResponse("Enter the file path to your PDF", "File path can not be empty.");
+        filePath ??= ConsoleHelpers.GetResponse("Enter the file path to your PDF", "File path can not be empty.");
         if (filePath is null) return;
 
         try
@@ -207,12 +205,10 @@ public class Program
 
         if (!LovePdf.Wrapper.ValidateConfig(config)) return;
 
-        if (filePath is null)
-            filePath = ConsoleHelpers.GetResponse("Enter the file path to your PDF", "File path can not be empty.");
+        filePath ??= ConsoleHelpers.GetResponse("Enter the file path to your PDF", "File path can not be empty.");
         if (filePath is null) return;
 
-        if (saveToPath is null)
-            saveToPath = ConsoleHelpers.GetResponse("Enter the file path to which you want to save the XLSX", "File path can not be empty.");
+        saveToPath ??= ConsoleHelpers.GetResponse("Enter the file path to which you want to save the XLSX", "File path can not be empty.");
         if (saveToPath is null) return;
 
         try
@@ -239,12 +235,10 @@ public class Program
 
         if (!LovePdf.Wrapper.ValidateConfig(config)) return;
 
-        if (filePath is null)
-            filePath = ConsoleHelpers.GetResponse("Enter the file path to your PDF", "File path can not be empty.");
+        filePath ??= ConsoleHelpers.GetResponse("Enter the file path to your PDF", "File path can not be empty.");
         if (filePath is null) return;
 
-        if (saveToPath is null)
-            saveToPath = ConsoleHelpers.GetResponse("Enter the file path to which you want to save the jpg (if more than on page it will be saved as a zip)", "File path can not be empty.");
+        saveToPath ??= ConsoleHelpers.GetResponse("Enter the file path to which you want to save the jpg (if more than on page it will be saved as a zip)", "File path can not be empty.");
         if (saveToPath is null) return;
 
         try
@@ -271,8 +265,7 @@ public class Program
 
         if (!Excel.Wrapper.ValidateConfig(config)) return;
 
-        if (filePath is null)
-            filePath = ConsoleHelpers.GetResponse("Enter the file path to your spreadsheet", "File path can not be empty.");
+        filePath ??= ConsoleHelpers.GetResponse("Enter the file path to your spreadsheet", "File path can not be empty.");
         if (filePath is null) return;
 
         try
@@ -287,8 +280,7 @@ public class Program
             }
             string lernboxResult = Excel.Wrapper.ConvertVocabularyToLernbox(result, config.Subject);
 
-            if (copyToClipboard is null)
-                copyToClipboard = ConsoleHelpers.AskResponse("Vocabulary finished savinf.\nPress [Y] to copy the result to your clipboard or press [N] to write it to the console.");
+            copyToClipboard ??= ConsoleHelpers.AskResponse("Vocabulary finished savinf.\nPress [Y] to copy the result to your clipboard or press [N] to write it to the console.");
             if (copyToClipboard.Value)
             {
                 Console.WriteLine("Copying content to clipboard...");
@@ -301,7 +293,7 @@ public class Program
                 Console.WriteLine(lernboxResult);
             }
 
-            ConsoleHelpers.Write($"\nExtracted Vocabulary successfuly.\nFirst word is: \"{result[0].Word}\", Last word is: \"{result[result.Count - 1].Word}\".");
+            ConsoleHelpers.Write($"\nExtracted Vocabulary successfuly.\nFirst word is: \"{result[0].Word}\", Last word is: \"{result[^1].Word}\".");
         }
         catch (Exception ex)
         {
@@ -316,8 +308,7 @@ public class Program
 
         if (!OnlineShare.Wrapper.ValidateConfig(config)) return;
 
-        if (text is null)
-            text = ConsoleHelpers.GetResponse("Enter the text you want to upload to Online Share", "Text can not be empty.");
+        text ??= ConsoleHelpers.GetResponse("Enter the text you want to upload to Online Share", "Text can not be empty.");
         if (text is null) return;
 
         try

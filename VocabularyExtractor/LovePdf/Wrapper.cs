@@ -13,6 +13,7 @@ public static class Wrapper
         LovePdfApi api = new(publicKey, secretKey);
 
         PdfToOfficeTask task = api.CreateTask<PdfToOfficeTask>();
+
         task.AddFile(filePath);
         task.Process(new PdfToOfficeParams("xlsx"));
 
@@ -27,6 +28,7 @@ public static class Wrapper
         LovePdfApi api = new(publicKey, secretKey);
 
         PdfToJpgTask task = api.CreateTask<PdfToJpgTask>();
+
         task.AddFile(filePath);
         task.Process();
 
