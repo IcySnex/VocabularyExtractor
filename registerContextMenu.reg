@@ -2,20 +2,20 @@ Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\Software\Classes\SystemFileAssociations\.pdf\shell\VocabularyExtractor]
 "MUIVerb"="Vocabulary Extractor"
-"icon"="D:\\Personal\\Coding\\VocabularyExtractor\\icon.ico"
+"icon"="D:\\VocabularyExtractor\\icon.ico"
 "subCommands"=""
 
 [HKEY_CURRENT_USER\Software\Classes\SystemFileAssociations\.pdf\shell\VocabularyExtractor\shell\convertToJpg]
 "MUIVerb"="Convert to JPG"
 [HKEY_CURRENT_USER\Software\Classes\SystemFileAssociations\.pdf\shell\VocabularyExtractor\shell\convertToJpg\command]
-@="D:\\Personal\\Coding\\VocabularyExtractor\\VocabularyExtractor\\bin\\Release\\net6.0\\publish\\win-x64\\VocabularyExtractor.exe 3 -filePath \"%1\" -saveToPath \"%1.jpg\""
+@="D:\\VocabularyExtractor\\VocabularyExtractor\\bin\\Release\\net6.0\\publish\\win-x64\\VocabularyExtractor.exe 3 -filePath \"%1\" -saveToPath \"%1.jpg\""
 
 [HKEY_CURRENT_USER\Software\Classes\SystemFileAssociations\.pdf\shell\VocabularyExtractor\shell\convertToXlsx]
 "MUIVerb"="Convert to XLSX"
 [HKEY_CURRENT_USER\Software\Classes\SystemFileAssociations\.pdf\shell\VocabularyExtractor\shell\convertToXlsx\command]
-@="D:\\Personal\\Coding\\VocabularyExtractor\\VocabularyExtractor\\bin\\Release\\net6.0\\publish\\win-x64\\VocabularyExtractor.exe 2 -filePath \"%1\" -saveToPath \"%1.xlsx\""
+@="D:\\VocabularyExtractor\\VocabularyExtractor\\bin\\Release\\net6.0\\publish\\win-x64\\VocabularyExtractor.exe 2 -filePath \"%1\" -saveToPath \"%1.xlsx\""
 
 [HKEY_CURRENT_USER\Software\Classes\SystemFileAssociations\.pdf\shell\VocabularyExtractor\shell\extractVocabulary]
 "MUIVerb"="Extract Vocabulary"
 [HKEY_CURRENT_USER\Software\Classes\SystemFileAssociations\.pdf\shell\VocabularyExtractor\shell\extractVocabulary\command]
-@="D:\\Personal\\Coding\\VocabularyExtractor\\VocabularyExtractor\\bin\\Release\\net6.0\\publish\\win-x64\\VocabularyExtractor.exe 1 -filePath \"%1\""
+@="D:\\VocabularyExtractor\\VocabularyExtractor\\bin\\Release\\net6.0\\publish\\win-x64\\VocabularyExtractor.exe 1 -filePath \"%1\""

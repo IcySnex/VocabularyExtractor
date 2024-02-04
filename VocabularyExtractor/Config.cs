@@ -35,4 +35,10 @@ public class Config
     public string FirstCellValueStarter { get; set; } = string.Empty;
 
     public string Subject { get; set; } = string.Empty;
+
+    public int? WordColumn { get; set; } = 0;
+    
+    public int? MemoryAidColumn { get; set; } = 1;
+
+    public int? TranslationColumn { get; set; } = 2;
 }

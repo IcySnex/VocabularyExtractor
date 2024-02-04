@@ -113,10 +113,13 @@ public class Program
             Console.WriteLine("[2] Change ILovePDF Secret Key");
             Console.WriteLine("[3] Change Online Share API Key");
             Console.WriteLine("[4] Change First Cell Value Starter");
-            Console.WriteLine("[5] Change Subject\n");
+            Console.WriteLine("[5] Change Subject");
+            Console.WriteLine("[6] Change Word Column");
+            Console.WriteLine("[7] Change MemoryAid Column");
+            Console.WriteLine("[8] Change Translation\n");
             Console.WriteLine("[X] Exit Configuration Update\n\n");
 
-            string? choice = ConsoleHelpers.GetResponse("Press [1] - [6] to continue", "Invalid choice. Please enter a number between [1] and [5].");
+            string? choice = ConsoleHelpers.GetResponse("Press [1] - [8] to continue", "Invalid choice. Please enter a number between [1] and [8].");
             if (choice is null) continue;
 
             Console.Clear();
@@ -141,6 +144,18 @@ public class Program
                 case "5":
                     config.Subject = ConsoleHelpers.GetResponse("Enter new Subject", null) ?? string.Empty;
                     Console.WriteLine("Subject updated.");
+                    break;
+                case "6":
+                    config.WordColumn = ConsoleHelpers.GetResponse("Enter new Word Column", null) is string wordColumnString ? int.Parse(wordColumnString) : null;
+                    Console.WriteLine("Word Column updated.");
+                    break;
+                case "7":
+                    config.MemoryAidColumn = ConsoleHelpers.GetResponse("Enter new MemoryAid Column", null) is string memoryAidColumnString ? int.Parse(memoryAidColumnString) : null;
+                    Console.WriteLine("MemoryAid Column updated.");
+                    break;
+                case "8":
+                    config.TranslationColumn = ConsoleHelpers.GetResponse("Enter new Translation Column", null) is string TranslationColumnString ? int.Parse(TranslationColumnString) : null;
+                    Console.WriteLine("Translation Column updated.");
                     break;
                 case "x":
                     config.Save("config.json");
@@ -177,7 +192,7 @@ public class Program
 
             Console.WriteLine("Saving Vocabulary from spreadsheet...");
             using Stream document = new MemoryStream(file);
-            List<Excel.Vocabulary> result = Excel.Wrapper.ExtractVocabulary(document, config.FirstCellValueStarter);
+            List<Excel.Vocabulary> result = Excel.Wrapper.ExtractVocabulary(document, config.FirstCellValueStarter, config.WordColumn, config.MemoryAidColumn, config.TranslationColumn);
             if (result is null || result.Count < 1)
             {
                 ConsoleHelpers.Write($"Saving Vocabulary failed. For some reason there are no vocabulary in the list?");
@@ -272,7 +287,7 @@ public class Program
         {
             ConsoleHelpers.WriteClear("Saving Vocabulary from spreadsheet...");
             using Stream document = File.OpenRead(filePath);
-            List<Excel.Vocabulary> result = Excel.Wrapper.ExtractVocabulary(document, config.FirstCellValueStarter);
+            List<Excel.Vocabulary> result = Excel.Wrapper.ExtractVocabulary(document, config.FirstCellValueStarter, config.WordColumn, config.MemoryAidColumn, config.TranslationColumn);
             if (result is null || result.Count < 1)
             {
                 ConsoleHelpers.Write($"Saving Vocabulary failed. For some reason there are no vocabulary in the list?");
@@ -280,7 +295,7 @@ public class Program
             }
             string lernboxResult = Excel.Wrapper.ConvertVocabularyToLernbox(result, config.Subject);
 
-            copyToClipboard ??= ConsoleHelpers.AskResponse("Vocabulary finished savinf.\nPress [Y] to copy the result to your clipboard or press [N] to write it to the console.");
+            copyToClipboard ??= ConsoleHelpers.AskResponse("Vocabulary finished saving.\nPress [Y] to copy the result to your clipboard or press [N] to write it to the console.");
             if (copyToClipboard.Value)
             {
                 Console.WriteLine("Copying content to clipboard...");

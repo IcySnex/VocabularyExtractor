@@ -8,7 +8,10 @@ public static class Wrapper
 {
     public static List<Vocabulary> ExtractVocabulary(
         Stream document,
-        string firstCellValueStarter)
+        string firstCellValueStarter,
+        int? wordColumn,
+        int? memoryAidColumn,
+        int? translationColumn)
     {
         using SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(document, false);
 
@@ -16,6 +19,7 @@ public static class Wrapper
             throw new Exception("Workbook Part is null or there are no sheets in the document.");
 
         List<Vocabulary> result = new();
+        bool startExtraction = false;
         foreach (Sheet sheet in spreadsheetDocument.WorkbookPart.Workbook.Sheets.Elements<Sheet>())
         {
             if (sheet.Id is null || sheet.Id.Value is null) continue;
@@ -24,7 +28,6 @@ public static class Wrapper
             Row[] rows = worksheetPart.Worksheet.Elements<SheetData>().First().Elements<Row>().ToArray();
             if (rows.Length < 1) continue;
 
-            bool startExtraction = false;
             foreach (Row row in rows)
             {
                 Cell[] cells = row.Elements<Cell>().ToArray();
@@ -39,23 +42,10 @@ public static class Wrapper
                     continue;
                 }
 
-                int word, memoryAid, translation;
-                switch (cells.Length)
-                {
-                    case 3:
-                        (word, memoryAid, translation) = (0, 1, 2);
-                        break;
-                    case 5:
-                        (word, memoryAid, translation) = (0, 2, 3);
-                        break;
-                    default:
-                        continue;
-                }
-
                 result.Add(new(
-                    GetCellValue(spreadsheetDocument.WorkbookPart.SharedStringTablePart, cells[word]),
-                    GetCellValue(spreadsheetDocument.WorkbookPart.SharedStringTablePart, cells[memoryAid]),
-                    GetCellValue(spreadsheetDocument.WorkbookPart.SharedStringTablePart, cells[translation])));
+                    GetCellValue(spreadsheetDocument.WorkbookPart.SharedStringTablePart, wordColumn.HasValue ? cells[wordColumn.Value] : null),
+                    GetCellValue(spreadsheetDocument.WorkbookPart.SharedStringTablePart, memoryAidColumn.HasValue ? cells[memoryAidColumn.Value] : null),
+                    GetCellValue(spreadsheetDocument.WorkbookPart.SharedStringTablePart, translationColumn.HasValue ? cells[translationColumn.Value] : null)));
             }
         }
 
@@ -64,8 +54,8 @@ public static class Wrapper
 
     static string? GetCellValue(
         SharedStringTablePart? stringTablePart,
-        Cell cell) =>
-        stringTablePart is not null && cell.DataType is not null && cell.DataType.Value == CellValues.SharedString && cell.CellValue is not null ?
+        Cell? cell) =>
+        stringTablePart is not null && cell is not null && cell.DataType is not null && cell.DataType.Value == CellValues.SharedString && cell.CellValue is not null ?
         stringTablePart.SharedStringTable.Elements<SharedStringItem>().ElementAt(int.Parse(cell.CellValue.InnerText)).InnerText :
         null;
 
@@ -77,7 +67,7 @@ public static class Wrapper
         StringBuilder builder = new StringBuilder().AppendLine($"{subject}:");
 
         foreach (Vocabulary v in list)
-            builder.AppendLine($"/ {v.Translation.Replace("/", " ∕ ")} / {v.Word.Replace("/", " ∕ ")} ; {v.MemoryAid.Replace("/", " ∕ ")}");
+            builder.AppendLine($"/ {v.Translation.Replace("/", " ∕ ").ReplaceLineEndings(" ")} / {v.Word.Replace("/", " ∕ ").ReplaceLineEndings(" ")} ; {v.MemoryAid.Replace("/", " ∕ ").ReplaceLineEndings(" ")}");
 
         return builder.ToString();
     }
