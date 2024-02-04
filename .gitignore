@@ -5,6 +5,8 @@ packages/
 *.user
 _ReSharper.*
 
+registerContextMenu.reg
+
 VocabularyExtractor/bin/
 VocabularyExtractor/obj/
 VocabularyExtractor/Properties/
